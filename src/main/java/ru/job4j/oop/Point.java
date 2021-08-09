@@ -16,9 +16,4 @@ public class Point {
         return sqrt(pow(this.x - another.x, 2) + pow(this.y - another.y, 2));
     }
 
-    public static void main(String[] args) {
-        Point a = new Point(0, 0);
-        Point b = new Point(3, 4);
-        System.out.println("Distance between point a and point b is: " + a.distance(b));
-    }
-}
+ }
