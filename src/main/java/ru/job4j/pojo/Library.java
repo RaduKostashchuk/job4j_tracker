@@ -26,7 +26,7 @@ public class Library {
         }
         System.out.println();
         for (int index = 0; index < library.length; index++) {
-            if (library[index].getName().equals("Clean Code")) {
+            if ("Clean Code".equals(library[index].getName())) {
                 System.out.println("\"" + library[index].getName() + "\""
                         + " " + library[index].getSize());
             }
