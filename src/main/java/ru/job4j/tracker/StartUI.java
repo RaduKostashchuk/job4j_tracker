@@ -5,10 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class StartUI {
     public static void main(String[] args) {
-        Item item = new Item();
-        LocalDateTime currentDayTime = item.getLocalDateTime();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
-        String dateTimeFormat = currentDayTime.format(formatter);
-        System.out.println(dateTimeFormat);
+        Item item = new Item(1, "Report");
+        System.out.println(item.toString());
     }
 }
