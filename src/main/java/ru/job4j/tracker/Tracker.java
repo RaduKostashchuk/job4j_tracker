@@ -44,7 +44,7 @@ public class Tracker {
         Item[] result = new Item[items.length];
         int count = 0;
         for (int index = 0; index < size; index++) {
-            if (items[index] != null && items[index].getName().equals(key)) {
+            if (items[index].getName().equals(key)) {
                 result[count++] = items[index];
             }
         }
@@ -65,7 +65,6 @@ public class Tracker {
         int index = indexOf(id);
         boolean result = index != -1;
         if (result) {
-            items[index] = null;
             System.arraycopy(items, index + 1, items, index, size - index - 1);
             items[size - 1] = null;
             size--;
