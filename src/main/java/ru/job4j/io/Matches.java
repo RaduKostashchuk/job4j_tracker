@@ -17,12 +17,13 @@ public class Matches {
             switch (num) {
                 case "1", "2", "3" :
                     count -= Integer.parseInt(num);
+                    turn = !turn;
+                    System.out.println("На столе осталось " + Math.max(count, 0) + " спичек");
                     break;
                 default :
                     System.out.println("Неверное число");
             }
-            turn = !turn;
-            System.out.println("На столе осталось " + Math.max(count, 0) + " спичек");
+
         }
         System.out.println("Выиграл " + player);
     }
