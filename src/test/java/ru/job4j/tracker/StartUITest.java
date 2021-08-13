@@ -6,39 +6,36 @@ import static org.hamcrest.core.IsNull.*;
 import static org.junit.Assert.*;
 
 public class StartUITest {
-/*
+
     @Test
-    public void whenAddItem() {
-        String[] answers = new String[] {"Fix PC"};
+    public void whenCreateItem() {
+        String[] answers = {"0", "Item name", "1"};
         Input input = new StubInput(answers);
         Tracker tracker = new Tracker();
-        StartUI.createItem(input, tracker);
-        Item created = tracker.findAll()[0];
-        Item expected = new Item("Fix PC");
-        assertThat(created.getName(), is(expected.getName()));
+        UserAction[] actions = {new CreateAction(), new ExitAction()};
+        new StartUI().init(input, tracker, actions);
+        assertThat(tracker.findAll()[0].getName(), is("Item name"));
     }
 
     @Test
     public void whenReplaceItem() {
-        Tracker tracker = new Tracker();
-        Item item = new Item("New item");
-        tracker.add(item);
-        String[] answers = {String.valueOf(item.getId()), "replaced item"};
+        String[] answers = {"0", "1", "Replaced item", "1"};
         Input input = new StubInput(answers);
-        StartUI.replaceItem(input, tracker);
-        Item replaced = tracker.findById(item.getId());
-        assertThat(replaced.getName(), is("replaced item"));
+        Tracker tracker = new Tracker();
+        tracker.add(new Item("Original item"));
+        UserAction[] actions = {new ReplaceAction(), new ExitAction()};
+        new StartUI().init(input, tracker, actions);
+        assertThat(tracker.findAll()[0].getName(), is("Replaced item"));
     }
 
     @Test
     public void whenDelete() {
-        Tracker tracker = new Tracker();
-        Item item = new Item("Problem");
-        tracker.add(item);
-        int itemId = item.getId();
-        String[] answers = {String.valueOf(itemId)};
+        String[] answers = {"0", "1", "1"};
         Input input = new StubInput(answers);
-        StartUI.deleteItem(input, tracker);
-        assertThat(tracker.findById(itemId), is(nullValue()));
-    }*/
+        Tracker tracker = new Tracker();
+        tracker.add(new Item("Item"));
+        UserAction[] actions = {new DeleteAction(), new ExitAction()};
+        new StartUI().init(input, tracker, actions);
+        assertThat(tracker.findById(1), is(nullValue()));
+    }
 }
