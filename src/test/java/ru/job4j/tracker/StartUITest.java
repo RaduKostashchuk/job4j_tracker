@@ -8,6 +8,25 @@ import static org.junit.Assert.*;
 public class StartUITest {
 
     @Test
+    public void whenAddAndFindByName() {
+        Tracker tracker = new Tracker();
+        Output out = new StubOutput();
+        tracker.add(new Item("test"));
+        String item = tracker.findAll()[0].toString();
+        UserAction[] actions = {new ShowByNameAction(out), new ExitAction()};
+        Input input = new StubInput(new String[] {"0", "test", "1"});
+        new StartUI(out).init(input, tracker, actions);
+        assertThat(out.toString(), is("Menu:" + System.lineSeparator()
+                + "0. Find items by name" + System.lineSeparator()
+                + "1. Exit program" + System.lineSeparator()
+                + "=== Find item by name ===" + System.lineSeparator()
+                + item + System.lineSeparator()
+                + "Menu:" + System.lineSeparator()
+                + "0. Find items by name" + System.lineSeparator()
+                + "1. Exit program" + System.lineSeparator()));
+    }
+
+    @Test
     public void whenExit() {
         UserAction[] actions = {new ExitAction()};
         Output out = new StubOutput();
