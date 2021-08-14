@@ -95,8 +95,9 @@ public class StartUITest {
     public void whenDelete() {
         Tracker tracker = new Tracker();
         Output out = new StubOutput();
-        Input input = new StubInput(new String[] {"0", "1", "1"});
         tracker.add(new Item("Item"));
+        int id = tracker.findAll()[0].getId();
+        Input input = new StubInput(new String[] {"0", Integer.toString(id), "1"});
         UserAction[] actions = {new DeleteAction(out), new ExitAction()};
         new StartUI(out).init(input, tracker, actions);
         assertThat(tracker.findById(1), is(nullValue()));
