@@ -13,7 +13,7 @@ public class StartUI {
             showMenu(array);
             int select = input.askInt("Select:");
             if (select < 0 || select >= array.length) {
-                System.out.println("Wrong input, you can select from 0 to "
+                out.println("Wrong input, you can select from 0 to "
                         + (array.length - 1) + ".");
                 continue;
             }
@@ -30,7 +30,7 @@ public class StartUI {
 
     public static void main(String[] args) {
         Output out = new ConsoleOutput();
-        Input input = new ValidateInput(out);
+        Input input = new ValidateInput();
         Tracker tracker = new Tracker();
         UserAction[] array = {new CreateAction(out), new ShowAllAction(out), new ReplaceAction(out),
                 new DeleteAction(out), new ShowByIdAction(out), new ShowByNameAction(out),

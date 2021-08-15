@@ -8,6 +8,23 @@ import static org.junit.Assert.*;
 public class StartUITest {
 
     @Test
+    public void whenInvalidExit() {
+        Tracker tracker = new Tracker();
+        Input input = new StubInput(new String[] {"3", "1"});
+        Output output = new StubOutput();
+        UserAction[] actions = {new ShowAllAction(output), new ExitAction()};
+        new StartUI(output).init(input, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(output.toString(), is("Menu:" + ln
+            + "0. Show all items" + ln
+            + "1. Exit program" + ln
+            + "Wrong input, you can select from 0 to " + (actions.length - 1) + "." + ln
+            + "Menu:" + ln
+            + "0. Show all items" + ln
+            + "1. Exit program" + ln));
+    }
+
+    @Test
     public void whenAddAndFindByName() {
         Tracker tracker = new Tracker();
         Output out = new StubOutput();
