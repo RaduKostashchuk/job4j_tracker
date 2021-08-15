@@ -23,9 +23,9 @@ public class ValidateInputTest {
         Output output = new StubOutput();
         ValidateInput valInput = new ValidateInput(input, output);
         String[] array = new String[3];
-        for (int index = 0; index < array.length; index++) {
-            array[index] = Integer.toString(valInput.askInt("Enter menu:"));
-        }
+        array[0] = Integer.toString(valInput.askInt("Enter menu:"));
+        array[1] = Integer.toString(valInput.askInt("Enter menu:"));
+        array[2] = Integer.toString(valInput.askInt("Enter menu:"));
         assertArrayEquals(array, answers);
     }
 
