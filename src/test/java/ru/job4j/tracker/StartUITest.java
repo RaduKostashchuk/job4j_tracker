@@ -1,6 +1,9 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.*;
 import static org.junit.Assert.*;
@@ -12,13 +15,15 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Input input = new StubInput(new String[] {"3", "1"});
         Output output = new StubOutput();
-        UserAction[] actions = {new ShowAllAction(output), new ExitAction()};
+        ArrayList<UserAction> actions = new ArrayList<>();
+        actions.add(new ShowAllAction(output));
+        actions.add(new ExitAction());
         new StartUI(output).init(input, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(output.toString(), is("Menu:" + ln
             + "0. Show all items" + ln
             + "1. Exit program" + ln
-            + "Wrong input, you can select from 0 to " + (actions.length - 1) + "." + ln
+            + "Wrong input, you can select from 0 to " + (actions.size() - 1) + "." + ln
             + "Menu:" + ln
             + "0. Show all items" + ln
             + "1. Exit program" + ln));
@@ -30,7 +35,9 @@ public class StartUITest {
         Output out = new StubOutput();
         tracker.add(new Item("test"));
         String item = tracker.findAll()[0].toString();
-        UserAction[] actions = {new ShowByNameAction(out), new ExitAction()};
+        ArrayList<UserAction> actions = new ArrayList<>();
+        actions.add(new ShowByNameAction(out));
+        actions.add(new ExitAction());
         Input input = new StubInput(new String[] {"0", "test", "1"});
         new StartUI(out).init(input, tracker, actions);
         assertThat(out.toString(), is("Menu:" + System.lineSeparator()
@@ -45,7 +52,8 @@ public class StartUITest {
 
     @Test
     public void whenExit() {
-        UserAction[] actions = {new ExitAction()};
+        ArrayList<UserAction> actions = new ArrayList<>();
+        actions.add(new ExitAction());
         Output out = new StubOutput();
         Input input = new StubInput(new String[] {"0"});
         Tracker tracker = new Tracker();
@@ -58,7 +66,9 @@ public class StartUITest {
     public void whenFindAll() {
         Tracker tracker = new Tracker();
         Output out = new StubOutput();
-        UserAction[] actions = {new ShowAllAction(out), new ExitAction()};
+        ArrayList<UserAction> actions = new ArrayList<>();
+        actions.add(new ShowAllAction(out));
+        actions.add(new ExitAction());
         Input input = new StubInput(new String[] {"0", "1"});
         new StartUI(out).init(input, tracker, actions);
         assertThat(out.toString(), is("Menu:" + System.lineSeparator()
@@ -75,7 +85,9 @@ public class StartUITest {
     public void whenFindByName() {
         Tracker tracker = new Tracker();
         Output out = new StubOutput();
-        UserAction[] actions = {new ShowByNameAction(out), new ExitAction()};
+        ArrayList<UserAction> actions = new ArrayList<>();
+        actions.add(new ShowByNameAction(out));
+        actions.add(new ExitAction());
         Input input = new StubInput(new String[] {"0", "test", "1"});
         new StartUI(out).init(input, tracker, actions);
         assertThat(out.toString(), is("Menu:" + System.lineSeparator()
@@ -92,7 +104,9 @@ public class StartUITest {
     public void whenFindById() {
         Tracker tracker = new Tracker();
         Output out = new StubOutput();
-        UserAction[] actions = {new ShowByIdAction(out), new ExitAction()};
+        ArrayList<UserAction> actions = new ArrayList<>();
+        actions.add(new ShowByIdAction(out));
+        actions.add(new ExitAction());
         Input input = new StubInput(new String[] {"0", "1", "1"});
         new StartUI(out).init(input, tracker, actions);
         assertThat(out.toString(), is("Menu:" + System.lineSeparator()
@@ -110,7 +124,9 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Output out = new StubOutput();
         Input input = new StubInput(new String[] {"0", "Item name", "1"});
-        UserAction[] actions = {new CreateAction(out), new ExitAction()};
+        ArrayList<UserAction> actions = new ArrayList<>();
+        actions.add(new CreateAction(out));
+        actions.add(new ExitAction());
         new StartUI(out).init(input, tracker, actions);
         assertThat(tracker.findAll()[0].getName(), is("Item name"));
     }
@@ -122,7 +138,9 @@ public class StartUITest {
         tracker.add(new Item("Original item"));
         int id = tracker.findAll()[0].getId();
         Input input = new StubInput(new String[] {"0", Integer.toString(id), "Replaced item", "1"});
-        UserAction[] actions = {new ReplaceAction(out), new ExitAction()};
+        ArrayList<UserAction> actions = new ArrayList<>();
+        actions.add(new ReplaceAction(out));
+        actions.add(new ExitAction());
         new StartUI(out).init(input, tracker, actions);
         assertThat(tracker.findAll()[0].getName(), is("Replaced item"));
     }
@@ -134,7 +152,9 @@ public class StartUITest {
         tracker.add(new Item("Item"));
         int id = tracker.findAll()[0].getId();
         Input input = new StubInput(new String[] {"0", Integer.toString(id), "1"});
-        UserAction[] actions = {new DeleteAction(out), new ExitAction()};
+        ArrayList<UserAction> actions = new ArrayList<>();
+        actions.add(new DeleteAction(out));
+        actions.add(new ExitAction());
         new StartUI(out).init(input, tracker, actions);
         assertThat(tracker.findById(1), is(nullValue()));
     }

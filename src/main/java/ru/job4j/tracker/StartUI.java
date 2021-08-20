@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class StartUI {
     private final Output out;
 
@@ -7,24 +10,25 @@ public class StartUI {
         this.out = out;
     }
 
-    public void init(Input input, Tracker tracker, UserAction[] array) {
+    public void init(Input input, Tracker tracker, List<UserAction> list) {
         boolean run = true;
         while (run) {
-            showMenu(array);
+            showMenu(list);
             int select = input.askInt("Select:");
-            if (select < 0 || select >= array.length) {
+            if (select < 0 || select >= list.size()) {
                 out.println("Wrong input, you can select from 0 to "
-                        + (array.length - 1) + ".");
+                        + (list.size() - 1) + ".");
                 continue;
             }
-            run = array[select].execute(input, tracker);
+            run = list.get(select).execute(input, tracker);
          }
     }
 
-    private void showMenu(UserAction[] array) {
+    private void showMenu(List<UserAction> list) {
         out.println("Menu:");
-        for (int index = 0; index < array.length; index++) {
-            out.println(index + ". " + array[index].name());
+        int index = 0;
+        for (UserAction action : list) {
+            out.println(index++ + ". " + action.name());
         }
     }
 
@@ -32,9 +36,14 @@ public class StartUI {
         Output out = new ConsoleOutput();
         Input input = new ValidateInput(new ConsoleInput(), out);
         Tracker tracker = new Tracker();
-        UserAction[] array = {new CreateAction(out), new ShowAllAction(out), new ReplaceAction(out),
-                new DeleteAction(out), new ShowByIdAction(out), new ShowByNameAction(out),
-                new ExitAction()};
-        new StartUI(out).init(input, tracker, array);
+        List<UserAction> list = new ArrayList<>();
+        list.add(new CreateAction(out));
+        list.add(new ShowAllAction(out));
+        list.add(new ReplaceAction(out));
+        list.add(new DeleteAction(out));
+        list.add(new ShowByIdAction(out));
+        list.add(new ShowByNameAction(out));
+        list.add(new ExitAction());
+        new StartUI(out).init(input, tracker, list);
     }
 }
