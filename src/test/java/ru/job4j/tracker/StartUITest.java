@@ -34,7 +34,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Output out = new StubOutput();
         tracker.add(new Item("test"));
-        String item = tracker.findAll()[0].toString();
+        String item = tracker.findAll().get(0).toString();
         ArrayList<UserAction> actions = new ArrayList<>();
         actions.add(new ShowByNameAction(out));
         actions.add(new ExitAction());
@@ -128,7 +128,7 @@ public class StartUITest {
         actions.add(new CreateAction(out));
         actions.add(new ExitAction());
         new StartUI(out).init(input, tracker, actions);
-        assertThat(tracker.findAll()[0].getName(), is("Item name"));
+        assertThat(tracker.findAll().get(0).getName(), is("Item name"));
     }
 
     @Test
@@ -136,13 +136,13 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Output out = new StubOutput();
         tracker.add(new Item("Original item"));
-        int id = tracker.findAll()[0].getId();
+        int id = tracker.findAll().get(0).getId();
         Input input = new StubInput(new String[] {"0", Integer.toString(id), "Replaced item", "1"});
         ArrayList<UserAction> actions = new ArrayList<>();
         actions.add(new ReplaceAction(out));
         actions.add(new ExitAction());
         new StartUI(out).init(input, tracker, actions);
-        assertThat(tracker.findAll()[0].getName(), is("Replaced item"));
+        assertThat(tracker.findAll().get(0).getName(), is("Replaced item"));
     }
 
     @Test
@@ -150,7 +150,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Output out = new StubOutput();
         tracker.add(new Item("Item"));
-        int id = tracker.findAll()[0].getId();
+        int id = tracker.findAll().get(0).getId();
         Input input = new StubInput(new String[] {"0", Integer.toString(id), "1"});
         ArrayList<UserAction> actions = new ArrayList<>();
         actions.add(new DeleteAction(out));
