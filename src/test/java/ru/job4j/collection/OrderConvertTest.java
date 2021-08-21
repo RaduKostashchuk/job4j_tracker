@@ -15,4 +15,14 @@ public class OrderConvertTest {
         HashMap<String, Order> map = OrderConvert.process(orders);
         assertThat(map.get("3sfe"), is(new Order("3sfe", "Dress")));
     }
+
+    @Test
+    public void whenListContainsDublicate() {
+        List<Order> list = new ArrayList<>();
+        list.add(new Order("1", "order 1"));
+        list.add(new Order("2", "order 2"));
+        list.add(new Order("1", "order 1"));
+        HashMap<String, Order> map = OrderConvert.process(list);
+        assertEquals(map.size(), 2);
+    }
 }
