@@ -22,6 +22,6 @@ public class PassportOfficeTest {
         PassportOffice office = new PassportOffice();
         office.add(citizen);
         boolean result = office.add(fakeCitizen);
-        assertThat(result, is(false));
+        assertFalse(result);
     }
 }
