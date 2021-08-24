@@ -2,7 +2,16 @@ package ru.job4j.bank;
 
 import java.util.Objects;
 
+/**
+ * Класс содержит модель данных описывающую счет.
+ * @author KOSTASHCHUK RADU
+ * @version 1.0
+ */
 public class Account {
+    /**
+     * Модель данных хранит информацию о счете в двух полях:
+     * одно из которых строкового типа, второе типа double.
+     */
     private String requisite;
     private double balance;
 

@@ -2,7 +2,16 @@ package ru.job4j.bank;
 
 import java.util.Objects;
 
+/**
+ * Класс содержит модель данных описывающую пользователя.
+ * @author KOSTASHCHUK RADU
+ * @version 1.0
+ */
 public class User {
+    /**
+     * Модель данных хранит информацию о пользователе
+     * в двух полях строкового типа
+     */
     private String passport;
     private String username;
 
