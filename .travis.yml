@@ -18,3 +18,9 @@ notifications:
       - kostasc@mail.ru
     on_success: never # default: change
     on_failure: always # default: always
+
+env:
+
+  global:
+
+    - CODECOV_TOKEN='92751a1a-23fd-4f5f-8cd2-037a328039e7'
