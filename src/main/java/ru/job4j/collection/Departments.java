@@ -6,9 +6,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Departments {
     public static List<String> fillGaps(List<String> deps) {
         Set<String> temp = new LinkedHashSet<>();
-        for (String el : deps) {
-            temp.add(el.split("/")[0]);
-            temp.add(el);
+        for (String str : deps) {
+            String toAdd = "";
+            for (String el : str.split("/")) {
+                toAdd += el + "/";
+                temp.add(toAdd.substring(0, toAdd.length() - 1));
+            }
         }
         return new ArrayList<>(temp);
     }
