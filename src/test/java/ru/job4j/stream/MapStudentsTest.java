@@ -6,6 +6,7 @@ import java.util.*;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class MapStudentsTest {
 
@@ -21,5 +22,13 @@ public class MapStudentsTest {
         Map<String, Student> result = ms.listToMap(list);
         Set<String> expected = new HashSet<>(List.of("Ivan", "Danil"));
         assertThat(result.keySet(), is(expected));
+    }
+
+    @Test
+    public void whenListEmpty() {
+        MapStudents ms = new MapStudents();
+        List<Student> list = new ArrayList<>();
+        Map<String, Student> result = ms.listToMap(list);
+        assertTrue(result.values().isEmpty());
     }
 }
