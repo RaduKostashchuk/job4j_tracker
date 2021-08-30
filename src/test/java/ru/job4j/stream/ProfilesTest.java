@@ -12,11 +12,14 @@ public class ProfilesTest {
 
     @Test
     public void whenGet2Addresses() {
+        Profiles profiles = new Profiles();
         List<Profile> list = List.of(
+                new Profile(new Address("Moscow", "Arbat", 23, 12)),
+                new Profile(new Address("Rostov", "Lenina", 21, 77)),
                 new Profile(new Address("Moscow", "Arbat", 23, 12)),
                 new Profile(new Address("Rostov", "Lenina", 21, 77))
         );
-        List<Address> result = Profiles.collect(list);
+        List<Address> result = profiles.collect(list);
         List<Address> expected = List.of(
                 new Address("Moscow", "Arbat", 23, 12),
                 new Address("Rostov", "Lenina", 21, 77)
@@ -26,8 +29,9 @@ public class ProfilesTest {
 
     @Test
     public void whenEnmpty() {
+        Profiles profiles = new Profiles();
         List<Profile> list = new ArrayList<>();
-        List<Address> result = Profiles.collect(list);
+        List<Address> result = profiles.collect(list);
         assertTrue(result.isEmpty());
     }
 }
