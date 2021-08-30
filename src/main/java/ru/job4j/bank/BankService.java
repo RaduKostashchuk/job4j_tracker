@@ -67,15 +67,6 @@ public class BankService {
                 .findFirst()
                 .orElse(null)
                 : null;
-        /*
-        if (user != null) {
-            for (Account el : users.get(user)) {
-                if (el.getRequisite().equals(requisite)) {
-                    return el;
-                }
-            }
-        }
-        return null;*/
     }
 
     /**
