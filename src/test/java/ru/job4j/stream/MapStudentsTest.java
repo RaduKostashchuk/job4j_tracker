@@ -14,10 +14,10 @@ public class MapStudentsTest {
     public void when4StudentsTo2Entries() {
         MapStudents ms = new MapStudents();
         List<Student> list = List.of(
-                new Student(20, "Ivan"),
-                new Student(80, "Danil"),
-                new Student(20, "Ivan"),
-                new Student(80, "Danil")
+                new Student("Ivan", 20),
+                new Student("Danil", 80),
+                new Student("Ivan", 20),
+                new Student("Danil", 80)
         );
         Map<String, Student> result = ms.listToMap(list);
         Set<String> expected = new HashSet<>(List.of("Ivan", "Danil"));
