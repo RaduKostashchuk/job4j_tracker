@@ -19,10 +19,10 @@ public class JobTest {
         list.add(new Job("Impl task", 3));
         Comparator<Job> comp = new SortJobNameAsc();
         list.sort(comp);
-        List<Job> expected = new ArrayList<>();
-        expected.add(new Job("Fix bug", 2));
-        expected.add(new Job("Impl task", 3));
-        expected.add(new Job("Replace HDD", 1));
+        List<Job> expected = List.of(
+                new Job("Fix bug", 2),
+                new Job("Impl task", 3),
+                new Job("Replace HDD", 1));
         assertEquals(expected, list);
     }
 
@@ -34,10 +34,10 @@ public class JobTest {
         list.add(new Job("Impl task", 3));
         Comparator<Job> comp = new SortJobNameDesc();
         list.sort(comp);
-        List<Job> expected = new ArrayList<>();
-        expected.add(new Job("Replace HDD", 1));
-        expected.add(new Job("Impl task", 3));
-        expected.add(new Job("Fix bug", 2));
+        List<Job> expected = List.of(
+            new Job("Replace HDD", 1),
+            new Job("Impl task", 3),
+            new Job("Fix bug", 2));
         assertEquals(expected, list);
     }
 
@@ -49,10 +49,10 @@ public class JobTest {
         list.add(new Job("Fix bug", 2));
         Comparator<Job> comp = new SortJobPrioAsc();
         list.sort(comp);
-        List<Job> expected = new ArrayList<>();
-        expected.add(new Job("Replace HDD", 1));
-        expected.add(new Job("Fix bug", 2));
-        expected.add(new Job("Impl task", 3));
+        List<Job> expected = List.of(
+            new Job("Replace HDD", 1),
+            new Job("Fix bug", 2),
+            new Job("Impl task", 3));
         assertEquals(expected, list);
     }
 
@@ -64,10 +64,10 @@ public class JobTest {
         list.add(new Job("Fix bug", 2));
         Comparator<Job> comp = new SortJobPrioDesc();
         list.sort(comp);
-        List<Job> expected = new ArrayList<>();
-        expected.add(new Job("Impl task", 3));
-        expected.add(new Job("Fix bug", 2));
-        expected.add(new Job("Replace HDD", 1));
+        List<Job> expected = List.of(
+            new Job("Impl task", 3),
+            new Job("Fix bug", 2),
+            new Job("Replace HDD", 1));
         assertEquals(expected, list);
     }
 
@@ -80,11 +80,11 @@ public class JobTest {
         list.add(new Job("Fix bug", 2));
         Comparator<Job> comp = new SortJobNameAsc().thenComparing(new SortJobPrioAsc());
         list.sort(comp);
-        List<Job> expected = new ArrayList<>();
-        expected.add(new Job("Fix bug", 2));
-        expected.add(new Job("Fix bug", 3));
-        expected.add(new Job("Impl task", 3));
-        expected.add(new Job("Replace HDD", 1));
+        List<Job> expected = List.of(
+            new Job("Fix bug", 2),
+            new Job("Fix bug", 3),
+            new Job("Impl task", 3),
+            new Job("Replace HDD", 1));
         assertEquals(expected, list);
     }
 
@@ -97,11 +97,11 @@ public class JobTest {
         list.add(new Job("Fix bug", 2));
         Comparator<Job> comp = new SortJobNameDesc().thenComparing(new SortJobPrioDesc());
         list.sort(comp);
-        List<Job> expected = new ArrayList<>();
-        expected.add(new Job("Replace HDD", 1));
-        expected.add(new Job("Impl task", 3));
-        expected.add(new Job("Fix bug", 3));
-        expected.add(new Job("Fix bug", 2));
+        List<Job> expected = List.of(
+            new Job("Replace HDD", 1),
+            new Job("Impl task", 3),
+            new Job("Fix bug", 3),
+            new Job("Fix bug", 2));
         assertEquals(expected, list);
     }
 
@@ -114,11 +114,11 @@ public class JobTest {
         list.add(new Job("Fix bug", 2));
         Comparator<Job> comp = new SortJobNameDesc().thenComparing(new SortJobPrioAsc());
         list.sort(comp);
-        List<Job> expected = new ArrayList<>();
-        expected.add(new Job("Replace HDD", 1));
-        expected.add(new Job("Impl task", 3));
-        expected.add(new Job("Fix bug", 2));
-        expected.add(new Job("Fix bug", 3));
+        List<Job> expected = List.of(
+            new Job("Replace HDD", 1),
+            new Job("Impl task", 3),
+            new Job("Fix bug", 2),
+            new Job("Fix bug", 3));
         assertEquals(expected, list);
     }
 }

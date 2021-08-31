@@ -14,7 +14,7 @@ public class DepartmentsTest {
     @Test
     public void whenMissed() {
         List<String> input = Arrays.asList("k1/sk1");
-         List<String> expect = Arrays.asList("k1", "k1/sk1");
+         List<String> expect = List.of("k1", "k1/sk1");
         List<String> result = Departments.fillGaps(input);
         System.out.println(result);
         assertThat(result, is(expect));
@@ -23,7 +23,7 @@ public class DepartmentsTest {
     @Test
     public void whenNonChange() {
         List<String> input = Arrays.asList("k1", "k1/sk1");
-        List<String> expect = Arrays.asList("k1", "k1/sk1");
+        List<String> expect = List.of("k1", "k1/sk1");
         List<String> result = Departments.fillGaps(input);
         assertThat(result, is(expect));
     }
@@ -32,7 +32,7 @@ public class DepartmentsTest {
     public void whenSortAsc() {
         List<String> input = Arrays.asList("k1/sk1/ssk2", "k2", "k1/sk1", "k1/sk1/ssk1",
                 "k2/sk1/ssk2", "k2/sk1", "k1");
-        List<String> expected = Arrays.asList("k1", "k1/sk1", "k1/sk1/ssk1",
+        List<String> expected = List.of("k1", "k1/sk1", "k1/sk1/ssk1",
             "k1/sk1/ssk2", "k2", "k2/sk1", "k2/sk1/ssk2");
         Departments.sortAsc(input);
         assertThat(input, is(expected));
@@ -42,7 +42,7 @@ public class DepartmentsTest {
     public void whenSortDesc() {
         List<String> input = Arrays.asList("k2", "k1/sk1", "k1/sk1/ssk1",
                 "k2/sk1/ssk2", "k2/sk1/ssk1", "k2/sk1", "k1");
-        List<String> expected = Arrays.asList("k2", "k2/sk1", "k2/sk1/ssk1", "k2/sk1/ssk2",
+        List<String> expected = List.of("k2", "k2/sk1", "k2/sk1/ssk1", "k2/sk1/ssk2",
                 "k1", "k1/sk1", "k1/sk1/ssk1");
         Departments.sortDesc(input);
         assertThat(input, is(expected));
