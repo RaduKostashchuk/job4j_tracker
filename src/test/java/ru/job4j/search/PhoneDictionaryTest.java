@@ -9,7 +9,7 @@ public class PhoneDictionaryTest {
 
         @Test
         public void whenFindByName() {
-            PhoneDictionary phones = new PhoneDictionary();
+            var phones = new PhoneDictionary();
             phones.add(
                     new Person("Petr", "Arsentev", "Bryansk", "534872")
             );
@@ -19,7 +19,7 @@ public class PhoneDictionaryTest {
 
     @Test
     public void whenNotFindByName() {
-        PhoneDictionary phones = new PhoneDictionary();
+        var phones = new PhoneDictionary();
         phones.add(
                 new Person("Petr", "Arsentev", "Bryansk", "534872")
         );

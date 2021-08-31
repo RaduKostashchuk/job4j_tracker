@@ -1,7 +1,6 @@
 package ru.job4j.search;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.function.Predicate;
 
 public class PhoneDictionary {
@@ -12,7 +11,7 @@ public class PhoneDictionary {
     }
 
     public ArrayList<Person> find(String key) {
-        ArrayList<Person> result = new ArrayList<>();
+        var result = new ArrayList<Person>();
         Predicate<Person> searchName = (person) -> person.getName().contains(key);
         Predicate<Person> searchSurname = (person) -> person.getSurname().contains(key);
         Predicate<Person> searchPhone = (person) -> person.getPhone().contains(key);
