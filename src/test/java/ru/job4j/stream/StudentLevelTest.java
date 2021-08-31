@@ -15,11 +15,12 @@ public class StudentLevelTest {
         List<Student> input = new ArrayList<>();
         input.add(new Student("Masha", 28));
         input.add(new Student("Pety", 128));
+        input.add(new Student("Pasha", 18));
         List<Student> expected = List.of(
-                new Student("Masha", 28),
-                new Student("Pety", 128)
-
+                new Student("Pety", 128),
+                new Student("Masha", 28)
         );
+        System.out.println(StudentLevel.levelOf(input, 20));
         assertThat(StudentLevel.levelOf(input, 20), is(expected));
     }
 
