@@ -12,7 +12,7 @@ public class StartUITest {
 
     @Test
     public void whenInvalidExit() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Input input = new StubInput(new String[] {"3", "1"});
         Output output = new StubOutput();
         ArrayList<UserAction> actions = new ArrayList<>();
@@ -31,7 +31,7 @@ public class StartUITest {
 
     @Test
     public void whenAddAndFindByName() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Output out = new StubOutput();
         tracker.add(new Item("test"));
         String item = tracker.findAll().get(0).toString();
@@ -56,7 +56,7 @@ public class StartUITest {
         actions.add(new ExitAction());
         Output out = new StubOutput();
         Input input = new StubInput(new String[] {"0"});
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         new StartUI(out).init(input, tracker, actions);
         assertThat(out.toString(), is("Menu:" + System.lineSeparator()
                 + "0. Exit program" + System.lineSeparator()));
@@ -64,7 +64,7 @@ public class StartUITest {
 
     @Test
     public void whenFindAll() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Output out = new StubOutput();
         ArrayList<UserAction> actions = new ArrayList<>();
         actions.add(new ShowAllAction(out));
@@ -83,7 +83,7 @@ public class StartUITest {
 
     @Test
     public void whenFindByName() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Output out = new StubOutput();
         ArrayList<UserAction> actions = new ArrayList<>();
         actions.add(new ShowByNameAction(out));
@@ -102,7 +102,7 @@ public class StartUITest {
 
     @Test
     public void whenFindById() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Output out = new StubOutput();
         ArrayList<UserAction> actions = new ArrayList<>();
         actions.add(new ShowByIdAction(out));
@@ -121,7 +121,7 @@ public class StartUITest {
 
     @Test
     public void whenCreateItem() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Output out = new StubOutput();
         Input input = new StubInput(new String[] {"0", "Item name", "1"});
         ArrayList<UserAction> actions = new ArrayList<>();
@@ -133,7 +133,7 @@ public class StartUITest {
 
     @Test
     public void whenReplaceItem() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Output out = new StubOutput();
         tracker.add(new Item("Original item"));
         int id = tracker.findAll().get(0).getId();
@@ -147,7 +147,7 @@ public class StartUITest {
 
     @Test
     public void whenDelete() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Output out = new StubOutput();
         tracker.add(new Item("Item"));
         int id = tracker.findAll().get(0).getId();
