@@ -15,6 +15,10 @@ public class SqlTracker implements Store {
         init();
     }
 
+    public SqlTracker(Connection connection) {
+        this.cn = connection;
+    }
+
     public void init() {
         try (InputStream in  =
                      SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
@@ -34,12 +38,12 @@ public class SqlTracker implements Store {
     @Override
     public Item add(Item item) {
         try (PreparedStatement statement = cn.prepareStatement(
-                "insert into items(name, created) values(?, ?) returning(id)",
+                "insert into items(name, created) values(?, ?)",
                 Statement.RETURN_GENERATED_KEYS
         )) {
             statement.setString(1, item.getName());
             statement.setTimestamp(2, Timestamp.valueOf(item.getLocalDateTime()));
-            statement.executeQuery();
+            statement.execute();
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     item.setId(generatedKeys.getInt(1));
@@ -89,7 +93,7 @@ public class SqlTracker implements Store {
                 while (resultSet.next()) {
                     Timestamp timestamp = resultSet.getTimestamp("created");
                     LocalDateTime localDateTime = timestamp.toLocalDateTime();
-                    result.add(new Item(
+                    result.add(createItem(
                             resultSet.getInt("id"),
                             resultSet.getString("name"),
                             localDateTime
@@ -112,11 +116,10 @@ public class SqlTracker implements Store {
                 while (resultSet.next()) {
                     Timestamp timestamp = resultSet.getTimestamp("created");
                     LocalDateTime localDateTime = timestamp.toLocalDateTime();
-                    result.add(new Item(
+                    result.add(createItem(
                             resultSet.getInt("id"),
                             resultSet.getString("name"),
-                            localDateTime
-                    ));
+                            localDateTime));
                 }
             }
         } catch (SQLException e) {
@@ -135,17 +138,21 @@ public class SqlTracker implements Store {
                 if (resultSet.next()) {
                     Timestamp timestamp = resultSet.getTimestamp("created");
                     LocalDateTime localDateTime = timestamp.toLocalDateTime();
-                    result = new Item(
+                    result = createItem(
                             resultSet.getInt("id"),
                             resultSet.getString("name"),
                             localDateTime
-                    );
+                            );
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return result;
+    }
+
+    private Item createItem(int id, String name, LocalDateTime localDateTime) {
+        return new Item(id, name, localDateTime);
     }
 
     @Override
