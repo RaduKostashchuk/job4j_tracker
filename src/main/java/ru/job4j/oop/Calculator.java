@@ -24,10 +24,11 @@ public class Calculator {
     }
 
     public static void main(String[] args) {
+        Calculator c = new Calculator();
         System.out.println(Calculator.sum(10));
-        System.out.println(new Calculator().multiply(10));
+        System.out.println(c.multiply(10));
         System.out.println(Calculator.minus(10));
-        System.out.println(new Calculator().divide(10));
-        System.out.println(new Calculator().sumAllOperations(10));
+        System.out.println(c.divide(10));
+        System.out.println(c.sumAllOperations(10));
     }
 }
