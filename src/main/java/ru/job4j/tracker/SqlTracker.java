@@ -107,6 +107,26 @@ public class SqlTracker implements Store {
     }
 
     @Override
+    public void findAll(Observer<Item> observer) {
+        try (PreparedStatement statement =
+                     cn.prepareStatement("select * from items order by name asc")) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Timestamp timestamp = resultSet.getTimestamp("created");
+                    LocalDateTime localDateTime = timestamp.toLocalDateTime();
+                    observer.receive(createItem(
+                            resultSet.getInt("id"),
+                            resultSet.getString("name"),
+                            localDateTime
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public List<Item> findByName(String key) {
         List<Item> result = new ArrayList<>();
         try (PreparedStatement statement = cn.prepareStatement(

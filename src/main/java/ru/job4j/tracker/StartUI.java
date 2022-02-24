@@ -33,7 +33,7 @@ public class StartUI {
     public static void main(String[] args) {
         Output out = new ConsoleOutput();
         Input input = new ValidateInput(new ConsoleInput(), out);
-        Store tracker = new HbmTracker();
+        Store tracker = new SqlTracker();
         List<UserAction> list = List.of(
                 new CreateAction(out),
                 new ShowAllAction(out),

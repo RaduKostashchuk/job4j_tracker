@@ -19,6 +19,9 @@ public class MemTracker implements Store {
         return items;
     }
 
+    @Override
+    public void findAll(Observer<Item> observer) { }
+
     public Item findById(int id) {
         int index = indexOf(id);
         return index != -1 ? items.get(index) : null;
