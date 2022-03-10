@@ -7,6 +7,8 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.junit.After;
 import org.junit.Test;
+import ru.job4j.tracker.model.Item;
+import ru.job4j.tracker.store.HbmTracker;
 
 import java.util.List;
 
